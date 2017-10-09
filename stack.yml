@@ -1,0 +1,55 @@
+provider:
+  name: faas
+  gateway: http://10.0.1.185:8080
+
+functions:
+  vra-token:
+    lang: python
+    handler: ./vra-token/
+    image: yourdockerhub/vra-token
+    environment:
+      cloud_fqdn: yourvra.fqdn.com
+      user: youradmin@vsphere.local
+      pw: yourpass
+      tenant: vsphere.local
+  vra-resources:
+    lang: python
+    handler: ./vra-resources/
+    image: yourdockerhub/vra-resources
+    environment:
+      cloud_fqdn: yourvra.fqdn.com
+      user: youradmin@vsphere.local
+      pw: yourpass
+      tenant: vsphere.local
+  vcenter-vms:
+    lang: python
+    handler: ./vcenter-vms/
+    image: yourdockerhub/vcenter-vms
+    environment:
+      vc_fqdn: yourvc.fqdn.com
+      user: administrator@vsphere.local
+      pw: yourpass
+  get-vc-vms:
+    lang: node
+    handler: ./get-vc-vms
+    image: yourdockerhub/get-vc-vms
+    environment:
+      ENDPOINT: 'https://yourvc.fqdn.com'
+      USER: 'administrator@vsphere.local'
+      PASS: 'yourpass'
+  get-vc-vmname:
+    lang: node
+    handler: ./get-vc-vmname
+    image: yourdockerhub/get-vc-vmname
+    environment:
+      ENDPOINT: 'https://yourvc.fqdn.com'
+      USER: 'administrator@vsphere.local'
+      PASS: 'yourpass'
+  get-vc-vmname-network:
+    lang: node
+    handler: ./get-vc-vmname-network
+    image: yourdockerhub/get-vc-vmname-network
+    environment:
+      ENDPOINT: 'https://yourvc.fqdn.com'
+      USER: 'administrator@vsphere.local'
+      PASS: 'yourpass'
